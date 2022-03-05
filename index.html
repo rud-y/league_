@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="styles.css">
+  <script src="app.js" type="application/javascript"></script>
+  <title>League</title>
+</head>
+<body>
+  <div id="main-container">
+    <div class="actions-and-table-container">
+    <div id="actions">
+      <form id="team-form">
+        <input type="text" id="team" name="team" placeholder="Team name here" required>
+        <input id="team-submit" class="action-button" type="submit" value="Create">
+    </form>
+
+    <button id="generate-button">Done - generate first Matches</button>
+
+    <div id="match-container" class="hidden">
+      <!-- <h4 class="teamA"><span class="teamA-score"></span></h4>
+      <h4 class="teamB"><span class="teamB-score"></span></h4> -->
+    </div>
+
+    </div>
+    <div id="table-container">
+      <div id="table">
+        <th>
+          <tr>
+        </th>
+          <td>Team</td>
+          <td>Matches</td>
+          <td>Wins</td>
+          <td>Draws</td>
+          <td>Losses</td>
+        </tr>
+        </th>
+      </div>
+    </div>
+    </div>
+  </div>
+</body>
+</html>

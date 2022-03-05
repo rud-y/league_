@@ -1,0 +1,85 @@
+:root {
+    --main-color: #17588a;
+}
+
+#main-container {
+    display: block;
+    margin: 0 auto;
+    width: 900px;
+    height: 700px;
+    background-color: var(--main-color);
+    border-left: 5px solid rgb(183, 191, 223);
+}
+.actions-and-table-container {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: flex-start;
+}
+
+#actions {
+border: solid green 0.1rem;
+padding: 0.5rem;
+margin: 0.5rem;
+}
+
+#table {
+margin-left: 5vw;
+padding: 0.3rem;
+}
+
+#table th,td {
+    width: 30px;
+    text-align: left;
+}
+
+.table-team-name {
+    width: 200px;
+}
+
+/* Form */
+#team-form {
+    display: flex;
+    flex-flow: column nowrap;
+}
+input {
+    width: 12vw;
+    height: 3vh;
+    background-color: rgb(209, 230, 230);
+    margin: 10px;
+}
+.action-button {
+    width: 10vw;
+    height: 4vh;
+    background-color: rgb(113, 180, 180);
+    border-radius: 16px;
+}
+
+#generate-button {
+    background-color: #5db37e;
+    border: none;
+    height: 2rem;
+}
+
+#team-submit:hover {
+    border: 2px solid white;
+}
+
+/* Matches */
+#match-container {
+    /* width:fit-content; */
+    border: solid 2px orange;
+    display: block;
+    width: 14rem;
+    height: 10rem;
+    margin-top: 5rem;
+
+}
+
+.hidden {
+    visibility: hidden;
+}
+.visible {
+    visibility: visible;
+}
+
+
