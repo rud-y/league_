@@ -1,7 +1,9 @@
 :root {
     --main-color: #17588a;
 }
-
+body {
+    color: white;
+}
 #main-container {
     display: block;
     margin: 0 auto;
@@ -27,13 +29,13 @@ margin-left: 5vw;
 padding: 0.3rem;
 }
 
-#table th,td {
-    width: 30px;
+#table tbody tr td {
+    width: 4rem;
     text-align: left;
 }
 
 .table-team-name {
-    width: 200px;
+    width: 6rem;
 }
 
 /* Form */
@@ -42,22 +44,27 @@ padding: 0.3rem;
     flex-flow: column nowrap;
 }
 input {
-    width: 12vw;
-    height: 3vh;
+    width: 10rem;
+    height: 1rem;
     background-color: rgb(209, 230, 230);
     margin: 10px;
+    padding: 5px;
 }
 .action-button {
-    width: 10vw;
     height: 4vh;
-    background-color: rgb(113, 180, 180);
-    border-radius: 16px;
+    background-color: black;
+    color: white;
+    font-weight: 200;;
+    border: none;
+    border-radius: 14px;
 }
 
-#generate-button {
-    background-color: #5db37e;
-    border: none;
-    height: 2rem;
+#generate-matches-button {
+    background-color: black;
+    height: 4vh;
+    color: white;
+    font-weight: 200;
+    border-radius: 14px;
 }
 
 #team-submit:hover {
