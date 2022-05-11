@@ -3,18 +3,15 @@ document.addEventListener('DOMContentLoaded', ()=> {
   const leagueTable = {
       rows: []
   }
-  // Round of matches
-  const matchRound = [];
 
-  
   const getTeamWithStatsRowInit = function(e) {
       const tableRow = {
-          teamName: "",
-          numOfMatches: 0,
-          wins: 0,
-          draws: 0,
-          losses: 0,
-          points: 0
+        teamName: "",
+        numOfMatches: 0,
+        wins: 0,
+        draws: 0,
+        losses: 0,
+        points: 0
       }
 
       const myForm = document.getElementById('team-form');
@@ -28,19 +25,24 @@ document.addEventListener('DOMContentLoaded', ()=> {
       const tr = document.createElement('tr');
       const dTeamName = document.createElement('td');
       
-      if(leagueTable.rows.length == 0) {
+      if(validatedTeamName == '') {
+        alert('You must type a name of a team!');
+        return;
+      }
+      else if(leagueTable.rows.length == 0) {
         tableRow.teamName = validatedTeamName;
-      } else {
-        for(const team in leagueTable.rows){
+      }
+      else {
+        for(const team of leagueTable.rows){
           if(team.teamName == validatedTeamName) {
-            alert('Sorry, this Team Name already exists! Enter a unique name!')
+            alert('Sorry, this Team Name already exists! Enter a unique name!');
             return;
           } else {
             // orig. in after for loop with alert()
             tableRow.teamName = validatedTeamName;
           }
-        }
-      }
+        };
+      };
 
       tr.appendChild(dTeamName);
       dTeamName.textContent = tableRow.teamName;
@@ -101,17 +103,15 @@ document.addEventListener('DOMContentLoaded', ()=> {
 
   // Generate all matches possible in a group
   const generatePossibleMatches = () => {
-      // if(leagueTable.rows.length % 2 == 0) {
-          const allMatches = leagueTable.rows.flatMap((t1, i) => leagueTable.rows.slice(i+1).map( (t2) => {
-            newMatch.team1 = t1.teamName;
-            newMatch.team2 = t2.teamName;
-            return t1.teamName + ' VS ' + t2.teamName;
-          }));
-          console.log(allMatches);
-      // } else {
-      //   alert("There needs to be an even number of teams!")
-      // }
-    }
+      
+    const allMatches = leagueTable.rows.flatMap((t1, i) => leagueTable.rows.slice(i+1).map( (t2) => {
+      newMatch.team1 = t1.teamName;
+      newMatch.team2 = t2.teamName;
+      return t1.teamName + ' VS ' + t2.teamName;
+    }));
+    console.log(allMatches);
+      
+  }
     
   const matchButton = document.querySelector('#generate-matches-button');
   matchButton.addEventListener('click', generatePossibleMatches);
