@@ -1,16 +1,17 @@
 :root {
-    --main-color: #17588a;
+    --main-color: #58558c;
+    --border: whitesmoke;
 }
 body {
     color: white;
 }
 #main-container {
+    border: 5px solid black;
+    background-color: var(--main-color);
     display: block;
+    height: 700px;
     margin: 0 auto;
     width: 900px;
-    height: 700px;
-    background-color: var(--main-color);
-    border-left: 5px solid rgb(183, 191, 223);
 }
 .actions-and-table-container {
     display: flex;
@@ -19,9 +20,9 @@ body {
 }
 
 #actions {
-border: solid green 0.1rem;
-padding: 0.5rem;
+border: solid var(--border) 0.1rem;
 margin: 0.5rem;
+padding: 0.5rem;
 }
 
 #table {
@@ -30,8 +31,8 @@ padding: 0.3rem;
 }
 
 #table tbody tr td {
-    width: 4rem;
     text-align: left;
+    width: 4rem;
 }
 
 .table-team-name {
@@ -43,28 +44,30 @@ padding: 0.3rem;
     display: flex;
     flex-flow: column nowrap;
 }
+
 input {
-    width: 10rem;
-    height: 1rem;
     background-color: rgb(209, 230, 230);
+    height: 1rem;
     margin: 10px;
     padding: 5px;
+    width: 10rem;
 }
+
 .action-button {
-    height: 4vh;
     background-color: black;
-    color: white;
-    font-weight: 200;;
     border: none;
     border-radius: 14px;
+    color: white;
+    font-weight: 200;;
+    height: 4vh;
 }
 
 #generate-matches-button {
     background-color: black;
-    height: 4vh;
+    border-radius: 14px;
     color: white;
     font-weight: 200;
-    border-radius: 14px;
+    height: 4vh;
 }
 
 #team-submit:hover {
@@ -74,11 +77,11 @@ input {
 /* Matches */
 #match-container {
     /* width:fit-content; */
-    border: solid 2px orange;
+    border: solid 2px whitesmoke;
     display: block;
-    width: 14rem;
     height: 10rem;
-    margin-top: 5rem;
+    margin-top: 3rem;
+    width: 14rem;
 
 }
 

@@ -8,37 +8,37 @@
   <script src="app.js" type="application/javascript"></script>
   <title>League</title>
 </head>
+
 <body>
   <div id="main-container">
     <div class="actions-and-table-container">
-    <div id="actions">
-      <form id="team-form">
-        <input type="text" id="team" name="team" placeholder="Team name here" required>
-        <input id="team-submit" class="action-button" type="submit" value="Create">
-    </form>
+      <div id="actions">
+        <form id="team-form">
+          <input type="text" id="team" name="team" placeholder="Team name here" required>
+          <input id="team-submit" class="action-button" type="submit" value="Create">
+      </form>
 
-    <button id="generate-matches-button">Generate first Matches</button>
+      <input type="button" value="Generate first Matches" id="generate-matches-button">
 
-    <div id="match-container" class="hidden">
-      <!-- <h4 class="teamA"><span class="teamA-score"></span></h4>
-      <h4 class="teamB"><span class="teamB-score"></span></h4> -->
-    </div>
+      <div id="match-container" class="hidden">
+        <!-- <h4 class="teamA"><span class="teamA-score"></span></h4>
+        <h4 class="teamB"><span class="teamB-score"></span></h4> -->
+      </div>
 
-    </div>
-    <div id="table-container">
-      <table id="table" class="hidden">
-        
-          <tr>
-          <td>Team</td>
-          <td>Matches</td>
-          <td>Wins</td>
-          <td>Draws</td>
-          <td>Losses</td>
-          <td>Points</td>
-          </tr>
-        
-      </table>
-    </div>
+      </div>
+      <!-- Table -->
+      <div id="table-container">
+        <table id="table" class="hidden">
+            <tr>
+            <td>Team</td>
+            <td>Matches</td>
+            <td>Wins</td>
+            <td>Draws</td>
+            <td>Losses</td>
+            <td>Points</td>
+            </tr>
+        </table>
+      </div>
     </div>
   </div>
 
