@@ -19,25 +19,20 @@ document.addEventListener('DOMContentLoaded', ()=> {
 
         const myForm = document.getElementById('team-form');
         let teamValue = myForm.team.value;
-        // Before teamName is assigned to tableRow object, validate
+        // Before teamName is assigned to tableRow object, validate for extra whitespace
         const validatedTeamName = teamValue.trim()
 
-        // for( const teamObject of leagueTable.rows){
-        //   if(teamObject.teamName == validatedTeamName){
-        //     alert('Sorry, this Team Name already exists! Enter a unique name!')
-        //     break;
-        //   }
-        // }
         document.getElementById('team').value = "";
         
         //data row in table
         const tr = document.createElement('tr');
         const dTeamName = document.createElement('td');
         
-        const tableTeamNames = document.querySelectorAll('.table-team-name')
-        if(tableTeamNames) {
-          for(const team of tableTeamNames) {
-            if(team.textContent == validatedTeamName) {
+        if(leagueTable.rows.length == 0) {
+          tableRow.teamName = validatedTeamName;
+        } else {
+          for(const team in leagueTable.rows){
+            if(team.teamName == validatedTeamName) {
               alert('Sorry, this Team Name already exists! Enter a unique name!')
               return;
             } else {
@@ -46,6 +41,8 @@ document.addEventListener('DOMContentLoaded', ()=> {
             }
           }
         }
+
+          
         tr.appendChild(dTeamName);
         dTeamName.textContent = tableRow.teamName;
         dTeamName.classList.add('table-team-name');
@@ -101,8 +98,10 @@ document.addEventListener('DOMContentLoaded', ()=> {
       team1: {},
       team2: {},
       score1: 0,
-      score2: 0
+      score2: 0,
+      overtime: false
     }
+
     // Generate all matches possible in a group
     const generatePossibleMatches = () => {
       // console.log('DUPLICATE LEAGUE-TABLE:',duplicateTable)
@@ -117,6 +116,8 @@ document.addEventListener('DOMContentLoaded', ()=> {
         }
         console.log('ALL MATCHES GEN::: ', allMatches)
 
+      } else {
+        alert("There needs to be even number of teams!")
       }
 
       // const secondHalf = leagueTable.rows.slice(leagueTable.rows.length/2, leagueTable.rows.length)
