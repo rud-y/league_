@@ -16,15 +16,14 @@ document.addEventListener('DOMContentLoaded', ()=> {
 
       const myForm = document.getElementById('team-form');
       let teamValue = myForm.team.value;
-      // Before teamName is assigned to tableRow object, validate for extra whitespace
       const validatedTeamName = teamValue.trim()
 
       document.getElementById('team').value = "";
-      
+
       //data row in table
       const tr = document.createElement('tr');
       const dTeamName = document.createElement('td');
-      
+
       if(validatedTeamName == '') {
         alert('You must type a name of a team!');
         return;
@@ -48,7 +47,7 @@ document.addEventListener('DOMContentLoaded', ()=> {
       dTeamName.textContent = tableRow.teamName;
       dTeamName.classList.add('table-team-name');
 
-      
+
       const dNumOfMatches = document.createElement('td');
       tr.appendChild(dNumOfMatches);
       dNumOfMatches.textContent = tableRow.numOfMatches;
@@ -68,7 +67,7 @@ document.addEventListener('DOMContentLoaded', ()=> {
       const dPoints = document.createElement('td');
       dPoints.textContent = tableRow.points;
       tr.appendChild(dPoints);
-      
+
 
       const table = document.getElementById('table');
       const tbody = document.querySelector('tbody')
@@ -79,10 +78,10 @@ document.addEventListener('DOMContentLoaded', ()=> {
       table.classList.add("visible")
       document.getElementById('team').value = "";
 
-      tableRow.id = Math.random()
-      tableRow.playedWith = []
-      leagueTable.rows.push(tableRow)
-      console.log(tableRow)
+      tableRow.id = Math.random().toFixed(5);
+      tableRow.playedWith = [];
+      leagueTable.rows.push(tableRow);
+      console.log(tableRow);
 
   }
 
@@ -93,30 +92,44 @@ document.addEventListener('DOMContentLoaded', ()=> {
     };
     console.log('SO FAR TABLE: ', leagueTable.rows)
 
-  const newMatch = {
-    team1: {},
-    team2: {},
-    score1: 0,
-    score2: 0,
-    overtime: false
-  }
+  // const newMatch = {
+  //   team1: {},
+  //   team2: {},
+  //   score1: 0,
+  //   score2: 0,
+  //   overtime: false
+  // }
 
   // Generate all matches possible in a group
+  const all = [];
   const generatePossibleMatches = () => {
-      
-    const allMatches = leagueTable.rows.flatMap((t1, i) => leagueTable.rows.slice(i+1).map( (t2) => {
+
+    const matches = leagueTable.rows.flatMap((t1, i) => leagueTable.rows.slice(i+1).map((t2) => {
+      // t1.teamName;
+      // t2.teamName;
+      // newMatch.score1 = 0;
+      // newMatch.score2 = 0;
+      // overtime = false;
+      const newMatch = {};
       newMatch.team1 = t1.teamName;
       newMatch.team2 = t2.teamName;
-      return t1.teamName + ' VS ' + t2.teamName;
+      newMatch.score1 = 0;
+      newMatch.score2 = 0;
+      newMatch.overtime = false;
+      all.push(newMatch);
+
+      console.log(newMatch.team1 + ' VS ' + newMatch.team2);
     }));
-    console.log(allMatches);
-      
+
+    console.log('::all;;',all);
+    console.log('::all[2]:: ',all[2]);
+    return matches;
   }
-    
+
+  console.log('::all[2] after generate...function: ',all[2]);
+
   const matchButton = document.querySelector('#generate-matches-button');
   matchButton.addEventListener('click', generatePossibleMatches);
-            
-            
-})    
-            
-            
+
+})
+

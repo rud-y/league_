@@ -17,11 +17,12 @@ body {
     display: flex;
     flex-flow: row nowrap;
     justify-content: flex-start;
+    margin: 0.5rem;
 }
 
 #actions {
 border: solid var(--border) 0.1rem;
-margin: 0.5rem;
+/* margin: 0.5rem; */
 padding: 0.5rem;
 }
 
