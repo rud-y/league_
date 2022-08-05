@@ -1,96 +1,102 @@
 :root {
-    --main-color: #58558c;
-    --border: whitesmoke;
+  --main-color: #58558c;
+  --border: whitesmoke;
 }
 body {
-    color: white;
+  color: white;
 }
 #main-container {
-    border: 5px solid black;
-    background-color: var(--main-color);
-    display: block;
-    height: 700px;
-    margin: 0 auto;
-    width: 900px;
+  border: 5px solid black;
+  background-color: var(--main-color);
+  display: block;
+  height: 700px;
+  margin: 0 auto;
+  width: 900px;
 }
 .actions-and-table-container {
-    display: flex;
-    flex-flow: row nowrap;
-    justify-content: flex-start;
-    margin: 0.5rem;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: flex-start;
+  margin: 0.5rem;
 }
 
 #actions {
-border: solid var(--border) 0.1rem;
-/* margin: 0.5rem; */
-padding: 0.5rem;
+  padding: 0.5rem;
 }
 
 #table {
-margin-left: 5vw;
-padding: 0.3rem;
+  margin-left: 5vw;
+  padding: 0.3rem;
 }
 
 #table tbody tr td {
-    text-align: left;
-    width: 4rem;
+  text-align: left;
+  width: 4rem;
 }
 
 .table-team-name {
-    width: 6rem;
+  width: 6rem;
 }
 
 /* Form */
 #team-form {
-    display: flex;
-    flex-flow: column nowrap;
+  display: flex;
+  flex-flow: column nowrap;
 }
 
 input {
-    background-color: rgb(209, 230, 230);
-    height: 1rem;
-    margin: 10px;
-    padding: 5px;
-    width: 10rem;
+  background-color: rgb(209, 230, 230);
+  height: 1rem;
+  margin: 10px;
+  padding: 5px;
+  width: 10rem;
 }
 
 .action-button {
-    background-color: black;
-    border: none;
-    border-radius: 14px;
-    color: white;
-    font-weight: 200;;
-    height: 4vh;
+  background-color: black;
+  border: none;
+  border-radius: 14px;
+  color: white;
+  font-weight: 200;;
+  height: 4vh;
 }
 
 #generate-matches-button {
-    background-color: black;
-    border-radius: 14px;
-    color: white;
-    font-weight: 200;
-    height: 4vh;
+  background-color: black;
+  border-radius: 14px;
+  color: white;
+  font-weight: 200;
+  height: 4vh;
 }
 
 #team-submit:hover {
-    border: 2px solid white;
+  border: 2px solid white;
 }
 
 /* Matches */
 #match-container {
-    /* width:fit-content; */
-    border: solid 2px whitesmoke;
-    display: block;
-    height: 10rem;
-    margin-top: 3rem;
-    width: 14rem;
+  border: solid 1px whitesmoke;
+  display: block;
+  padding: 0.8rem;
+  width: 14rem;
+}
 
+.match-element {
+  background-color: darkblue;
+  border-bottom: 0.1rem solid black;
+  margin-bottom: 0.8rem;
+  padding: 0.6rem;
+}
+
+.score-element {
+  float: right;
 }
 
 .hidden {
-    visibility: hidden;
+  visibility: hidden;
 }
 .visible {
-    visibility: visible;
+  visibility: visible;
 }
 
 
