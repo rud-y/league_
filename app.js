@@ -1,4 +1,4 @@
-document.addEventListener('DOMContentLoaded', ()=> {
+document.addEventListener('DOMContentLoaded', () => {
   // Main league table
   const leagueTable = {
       rows: []
@@ -82,54 +82,134 @@ document.addEventListener('DOMContentLoaded', ()=> {
       tableRow.playedWith = [];
       leagueTable.rows.push(tableRow);
       console.log(tableRow);
-
   }
 
+
+
   // Submit new team
-  document.getElementById('team-submit').onclick = (e) => {
+    document.getElementById('team-submit').onclick = (e) => {
       e.preventDefault();
       getTeamWithStatsRowInit();
     };
-    console.log('SO FAR TABLE: ', leagueTable.rows)
+    console.log('SO FAR TABLE: ', leagueTable.rows);
 
-  // const newMatch = {
-  //   team1: {},
-  //   team2: {},
-  //   score1: 0,
-  //   score2: 0,
-  //   overtime: false
-  // }
+    const matchButton = document.getElementById('generate-matches-button');
+    const fixtures = [];
+    let matchesLeft =[];
+    const allMatches = [];
 
-  // Generate all matches possible in a group
-  const all = [];
-  const generatePossibleMatches = () => {
+    const fixturesContainer = document.getElementById('match-container');
 
-    const matches = leagueTable.rows.flatMap((t1, i) => leagueTable.rows.slice(i+1).map((t2) => {
-      // t1.teamName;
-      // t2.teamName;
-      // newMatch.score1 = 0;
-      // newMatch.score2 = 0;
-      // overtime = false;
+    const generatePossibleMatches = () => {
+      const matches = leagueTable.rows.flatMap((t1, i) => leagueTable.rows.slice(i+1).map((t2) => {
       const newMatch = {};
       newMatch.team1 = t1.teamName;
       newMatch.team2 = t2.teamName;
       newMatch.score1 = 0;
       newMatch.score2 = 0;
       newMatch.overtime = false;
-      all.push(newMatch);
+      allMatches.push(newMatch);
 
       console.log(newMatch.team1 + ' VS ' + newMatch.team2);
     }));
+    matchButton.classList.add('hidden');
+    document.getElementById('team').classList.add('hidden');
+    document.getElementById('team-submit').classList.add('hidden');
 
-    console.log('::all;;',all);
-    console.log('::all[2]:: ',all[2]);
     return matches;
+  };
+
+
+  const generateFixtures = () => {
+    generatePossibleMatches();
+    console.log('ALLMATCHES::: ', allMatches);
+    const teamsPlayingThisWeek = [];
+    // const fixturesPassed = [];
+
+    allMatches.map(match => {
+      if (teamsPlayingThisWeek.includes(match.team1)) {
+        console.log(match.team1 + ' is already in This week fixtures!');
+      } else {
+        teamsPlayingThisWeek.push(match.team1);
+        fixtures.push(match);
+      }
+    });
+
+    console.log('teamsPlayingThisWeek ARRAY: ' , teamsPlayingThisWeek);
+
+    console.log('FIXTURES; ', fixtures);
+    console.log('REST OF THE MATCHES; ', matchesLeft);
+
+    return fixtures;
   }
 
-  console.log('::all[2] after generate...function: ',all[2]);
+  //-------------------------
+  // Create matches interface
+  const createMatchesUI = () => {
+    generateFixtures();
 
-  const matchButton = document.querySelector('#generate-matches-button');
-  matchButton.addEventListener('click', generatePossibleMatches);
+    fixtures.map(match => {
+      match.matchId = Math.random().toFixed(6);
+      const matchElement = document.createElement('div');
+      matchElement.classList.add('match-element');
 
-})
+      const playButton = document.createElement('button');
+      playButton.innerHTML = 'Play game';
+      playButton.classList.add('play-button');
+
+      const homeTeam = document.createElement('p');
+      homeTeam.classList.add('team-element1');
+      const homeTeamScore = document.createElement('span');
+      homeTeamScore.classList.add('score-element1');
+      const awayTeam = document.createElement('p');
+      awayTeam.classList.add('team-element2');
+      const awayTeamScore = document.createElement('span');
+      awayTeamScore.classList.add('score-element2');
+
+      homeTeam.innerHTML = match.team1;
+      homeTeamScore.innerHTML = '0';
+      awayTeam.innerHTML = match.team2;
+      awayTeamScore.innerHTML = '0';
+      homeTeam.appendChild(homeTeamScore);
+      awayTeam.appendChild(awayTeamScore);
+
+      matchElement.appendChild(homeTeam);
+      matchElement.appendChild(awayTeam);
+      matchElement.appendChild(playButton);
+
+      fixturesContainer.appendChild(matchElement);
+      fixturesContainer.classList.remove('hidden');
+
+      playButton.addEventListener('click', playGame);
+    });
+  }
+
+  matchButton.addEventListener('click', createMatchesUI);
+
+  //---START GAME--------
+  const playGame = (e) => {
+    let gameButton = e.target;
+    const matchElement = e.target.parentNode;
+    let score1 = matchElement.querySelector('.score-element1');
+    let score2 = matchElement.querySelector('.score-element2');
+    const team1 = matchElement.querySelector('.team-element1');
+    const team2 = matchElement.querySelector('.team-element2');
+
+    gameButton.innerHTML = '1.PERIOD IN PROGRESS';
+    setTimeout(() => {
+      score1.innerHTML = generateRandomScore(0, 3);
+      score2.innerHTML = generateRandomScore(0, 3);
+      console.log(team1.innerText + score1.innerHTML);
+      console.log(team2.innerText + score2.innerHTML);
+      gameButton.innerHTML = 'END OF 1.PERIOD';
+    }, 3000);
+
+  };
+
+  const generateRandomScore = (min, max) => {
+    const result = Math.random() * (max - min) + min;
+    return result.toFixed(0);
+  };
+
+});
 
