@@ -91,7 +91,6 @@ document.addEventListener('DOMContentLoaded', () => {
       e.preventDefault();
       getTeamWithStatsRowInit();
     };
-    console.log('SO FAR TABLE: ', leagueTable.rows);
 
     const matchButton = document.getElementById('generate-matches-button');
     const fixtures = [];
@@ -102,43 +101,53 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const generatePossibleMatches = () => {
       const matches = leagueTable.rows.flatMap((t1, i) => leagueTable.rows.slice(i+1).map((t2) => {
-      const newMatch = {};
-      newMatch.team1 = t1.teamName;
-      newMatch.team2 = t2.teamName;
-      newMatch.score1 = 0;
-      newMatch.score2 = 0;
-      newMatch.overtime = false;
-      allMatches.push(newMatch);
+        const newMatch = {};
+        newMatch.team1 = t1.teamName;
+        newMatch.team2 = t2.teamName;
+        newMatch.score1 = 0;
+        newMatch.score2 = 0;
+        newMatch.overtime = false;
+        allMatches.push(newMatch);
 
-      console.log(newMatch.team1 + ' VS ' + newMatch.team2);
-    }));
-    matchButton.classList.add('hidden');
-    document.getElementById('team').classList.add('hidden');
-    document.getElementById('team-submit').classList.add('hidden');
+        console.log(newMatch.team1 + ' VS ' + newMatch.team2);
+      }));
+      matchButton.classList.add('hidden');
+      document.getElementById('team').classList.add('hidden');
+      document.getElementById('team-submit').classList.add('hidden');
 
-    return matches;
-  };
+      return matches;
+    };
 
 
-  const generateFixtures = () => {
-    generatePossibleMatches();
-    console.log('ALLMATCHES::: ', allMatches);
+    const generateFixtures = () => {
     const teamsPlayingThisWeek = [];
+    generatePossibleMatches();
+    console.log('ALL MATCHES::: ', allMatches);
     // const fixturesPassed = [];
 
-    allMatches.map(match => {
-      if (teamsPlayingThisWeek.includes(match.team1)) {
-        console.log(match.team1 + ' is already in This week fixtures!');
-      } else {
+    allMatches.forEach((match) => {
+      if(!teamsPlayingThisWeek.includes(match.team1)) {
         teamsPlayingThisWeek.push(match.team1);
+        teamsPlayingThisWeek.push(match.team2);
         fixtures.push(match);
+      } else {
+        console.log('IN THIS WEEK ALREADY '+ match.team1+' and '+match.team2);
       }
     });
 
-    console.log('teamsPlayingThisWeek ARRAY: ' , teamsPlayingThisWeek);
+    // allMatches.map(match => {
+    //   if (teamsPlayingThisWeek.includes(match.team1)) {
+    //     console.log(match.team1 + ' is already in This week fixtures!');
+    //   } else {
+    //     teamsPlayingThisWeek.push(match.team1);
+    //     fixtures.push(match);
+    //   }
+    // });
 
+    console.log('teamsPlayingThisWeek ARRAY: ' , teamsPlayingThisWeek);
     console.log('FIXTURES; ', fixtures);
-    console.log('REST OF THE MATCHES; ', matchesLeft);
+    // console.log('REST OF THE MATCHES; ', matchesLeft);
+    console.log('ALL MATCHES AGAIN : ' + allMatches.length)
 
     return fixtures;
   }
