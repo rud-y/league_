@@ -2,6 +2,10 @@
   --main-color: #285462;
   --border: whitesmoke;
 }
+
+#ppp {
+  border: 5px solid pink;
+}
 body {
     color: white;
 }
