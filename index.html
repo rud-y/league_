@@ -5,7 +5,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="styles.css">
-  <script src="app.js" type="application/javascript"></script>
+  <script src="app.js" type="module"></script>
   <title>League</title>
 </head>
 
@@ -15,11 +15,10 @@
       <div id="actions">
         <form id="team-form">
           <input type="text" id="team" name="team" placeholder="Team name here" required>
-          <input id="team-submit" class="action-button" type="submit" value="Create">
+          <input id="team-submit" class="action-button" type="submit" value="Create team">
         </form>
 
         <input type="button" value="Generate first Matches" id="generate-matches-button">
-
         <div id="match-container" class="hidden"></div>
 
       </div>
@@ -38,6 +37,5 @@
       </div>
     </div>
   </div>
-
 </body>
 </html>

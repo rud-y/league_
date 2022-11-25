@@ -23,4 +23,4 @@ const playGame = (e) => {
     return result.toFixed(0);
   };
 
-  module.exports = playGame;
+export default playGame;

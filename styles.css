@@ -15,7 +15,8 @@ body {
     display: block;
     height: 700px;
     margin: 0 auto;
-    width: 900px;
+    min-width: 80vw;
+    width: fit-content;
 }
 .actions-and-table-container {
     display: flex;
