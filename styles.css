@@ -97,13 +97,23 @@ input {
 .score-element1,
 .score-element2 {
   float: right;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
 }
 
 .play-button {
-  background-color: whitesmoke;
+  background-color: rgb(245, 245, 245);
   border-radius: 1rem;
   padding: 0.2rem;
 }
+
+/* .score-period-1,
+.score-period-2,
+.score-period-3 {
+  float: right;
+  margin-right: 0.2rem;
+} */
 
 .hidden {
   display: none;

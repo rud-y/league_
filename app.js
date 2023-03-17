@@ -92,12 +92,13 @@ document.addEventListener('DOMContentLoaded', () => {
     getTeamWithStatsRowInit();
   };
 
-  const matchButton = document.getElementById('generate-matches-button');
+  const generateMatchesButton = document.getElementById('generate-matches-button');
   const fixtures = [];
   let matchesLeft =[];
   const allMatches = [];
 
   const fixturesContainer = document.getElementById('match-container');
+  const savedMatches = new Set([]);
 
   const generatePossibleMatches = () => {
     const matches = leagueTable.rows.flatMap((t1, i) => leagueTable.rows.slice(i+1).map((t2) => {
@@ -111,14 +112,20 @@ document.addEventListener('DOMContentLoaded', () => {
 
       console.log(newMatch.team1 + ' VS ' + newMatch.team2);
     }));
-    matchButton.classList.add('hidden');
+    generateMatchesButton.classList.add('hidden');
     document.getElementById('team').classList.add('hidden');
     document.getElementById('team-submit').classList.add('hidden');
+
+    localStorage.setItem('savedMatches', JSON.stringify(allMatches));
+
+    // Log matches from localstorage:
+    let matchesFromLS = JSON.parse(localStorage.getItem('savedMatches'));
+    console.log('LS MATCHES: ', matchesFromLS);
 
     return matches;
   };
 
-
+//---------------------------------
   const generateFixtures = () => {
     const teamsPlayingThisWeek = [];
     generatePossibleMatches();
@@ -144,8 +151,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     console.log('teamsPlayingThisWeek ARRAY: ' , teamsPlayingThisWeek);
     console.log('FIXTURES; ', fixtures);
-    // console.log('REST OF THE MATCHES; ', matchesLeft);
-    console.log('ALL MATCHES AGAINq: ' + allMatches.length)
 
     return fixtures;
   }
@@ -154,6 +159,7 @@ document.addEventListener('DOMContentLoaded', () => {
   // Create matches interface
   const createMatchesElements = () => {
     generateFixtures();
+    console.log('ALL MATCHES AGAIN2: ' + allMatches);
 
     fixtures.map(match => {
       match.matchId = Math.random().toFixed(6);
@@ -187,10 +193,17 @@ document.addEventListener('DOMContentLoaded', () => {
       fixturesContainer.appendChild(matchElement);
       fixturesContainer.classList.remove('hidden');
 
-      playButton.addEventListener('click', playGame);
     });
+
+    const allGamesPlayButtons = document.querySelectorAll('.play-button');
+    console.log(allGamesPlayButtons);
+    if(allGamesPlayButtons) {
+      allGamesPlayButtons.forEach((playButton) => {
+        playButton.addEventListener('click', playGame);
+      });
+    };
   }
 
-  matchButton.addEventListener('click', createMatchesElements);
+  generateMatchesButton.addEventListener('click', createMatchesElements);
 
 });
